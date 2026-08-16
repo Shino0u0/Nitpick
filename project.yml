@@ -1,4 +1,8 @@
 name: Nitpick
+packages:
+  FluidAudio:
+    url: https://github.com/FluidInference/FluidAudio
+    from: 0.9.1
 options:
   createIntermediateGroups: true
   deploymentTarget:
@@ -16,6 +20,8 @@ targets:
     platform: macOS
     sources:
       - Nitpick
+    dependencies:
+      - package: FluidAudio
     entitlements:
       path: Nitpick/Resources/Nitpick.entitlements
       properties:
