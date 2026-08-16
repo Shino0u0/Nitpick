@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Feature ideas
+    url: https://github.com/Shino0u0/Nitpick/discussions
+    about: New features start in the Ideas discussion category, not issues.

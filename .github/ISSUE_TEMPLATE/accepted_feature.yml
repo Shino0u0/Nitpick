@@ -1,0 +1,31 @@
+name: Accepted feature
+description: Scoped implementation issue for a feature accepted through the governance poll. Maintainer use; propose new ideas in Discussions instead.
+labels: [accepted-feature]
+body:
+  - type: input
+    id: discussion
+    attributes:
+      label: Source Discussion and Poll links
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What is in and out of scope for this implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Verifiable statements that define done.
+    validations:
+      required: true
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Privacy impact
+      description: Any change to captured, stored, or transmitted data.
+    validations:
+      required: true

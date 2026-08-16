@@ -1,0 +1,8 @@
+.DS_Store
+xcuserdata/
+DerivedData/
+build/
+*.xcodeproj
+!project.yml
+.swiftpm/
+*.profraw
