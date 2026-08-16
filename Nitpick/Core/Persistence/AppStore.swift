@@ -106,6 +106,41 @@ final class AppStore {
         try dictionaryEntries().map(\.asRule)
     }
 
+    func addDictionaryEntry(_ entry: DictionaryEntryRecord) throws {
+        context.insert(entry)
+        try context.save()
+    }
+
+    func deleteDictionaryEntry(_ entry: DictionaryEntryRecord) throws {
+        context.delete(entry)
+        try context.save()
+    }
+
+    // MARK: - Providers
+
+    func providerConfigurations() throws -> [ProviderConfiguration] {
+        try context.fetch(FetchDescriptor<ProviderConfiguration>())
+    }
+
+    func providerConfiguration(for provider: ProviderID) throws -> ProviderConfiguration {
+        if let existing = try providerConfigurations()
+            .first(where: { $0.providerID == provider }) {
+            return existing
+        }
+        let fresh = ProviderConfiguration(providerID: provider)
+        context.insert(fresh)
+        try context.save()
+        return fresh
+    }
+
+    func removeProvider(_ provider: ProviderID) throws {
+        if let existing = try providerConfigurations()
+            .first(where: { $0.providerID == provider }) {
+            context.delete(existing)
+            try context.save()
+        }
+    }
+
     // MARK: - Settings
 
     func settings() throws -> AppSettings {

@@ -1,34 +1,69 @@
+import SwiftData
 import SwiftUI
 
 @main
 struct NitpickApp: App {
+    @State private var appState: AppState?
+    @State private var startupError: String?
+
+    init() {
+        do {
+            _appState = State(initialValue: try AppState())
+        } catch {
+            _startupError = State(initialValue: "\(error)")
+        }
+    }
+
     var body: some Scene {
         Window("Nitpick", id: "main") {
-            MainWindowPlaceholder()
+            if let appState {
+                MainWindowView()
+                    .environment(appState)
+                    .modelContainer(appState.store.container)
+            } else {
+                Text("Nitpick could not open its local database.\n\(startupError ?? "")")
+                    .padding(40)
+            }
         }
-        .defaultSize(width: 760, height: 520)
+        .windowResizability(.contentMinSize)
+        .defaultSize(width: 860, height: 560)
 
         MenuBarExtra("Nitpick", systemImage: "waveform") {
-            MenuBarContent()
+            if let appState {
+                MenuBarContent()
+                    .environment(appState)
+                    .modelContainer(appState.store.container)
+            }
         }
     }
 }
 
-/// Temporary shell while feature tabs are built out. Replaced by the real
-/// History / Models / Modes / Dictionary window in the Features phase.
-struct MainWindowPlaceholder: View {
-    var body: some View {
-        Text("Nitpick")
-            .font(.title3)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-struct MenuBarContent: View {
+private struct MenuBarContent: View {
+    @Environment(AppState.self) private var appState
     @Environment(\.openWindow) private var openWindow
+    @Query(sort: \ModeRecord.order) private var modes: [ModeRecord]
 
     var body: some View {
-        Button("Open Nitpick") { openWindow(id: "main") }
+        Button("Start Dictation") { appState.startAction(.dictate) }
+            .keyboardShortcut("d", modifiers: [.command, .option])
+        Button("Ask") { appState.startAction(.ask) }
+            .keyboardShortcut("a", modifiers: [.command, .option])
+        Divider()
+        Picker("Mode", selection: Binding(
+            get: { appState.selectedModeID },
+            set: { appState.selectedModeID = $0 }
+        )) {
+            ForEach(modes.filter { $0.isEnabled || $0.isSystemDefault }, id: \.id) { mode in
+                Label(mode.name, systemImage: mode.iconSystemName)
+                    .tag(Optional(mode.id))
+            }
+        }
+        .pickerStyle(.inline)
+        Divider()
+        Button("Open Nitpick") {
+            openWindow(id: "main")
+            NSApp.activate()
+        }
         Divider()
         Button("Quit Nitpick") { NSApp.terminate(nil) }
     }
