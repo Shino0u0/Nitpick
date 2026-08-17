@@ -18,7 +18,7 @@ targets:
   Nitpick:
     type: application
     platform: macOS
-    productName: Vortex
+    productName: Vortext
     sources:
       - Nitpick
     dependencies:
@@ -30,7 +30,7 @@ targets:
     info:
       path: Nitpick/Resources/Info.plist
       properties:
-        CFBundleDisplayName: Vortex
+        CFBundleDisplayName: Vortext
         LSUIElement: true
         LSApplicationCategoryType: public.app-category.productivity
         NSMicrophoneUsageDescription: Nitpick records audio only while you dictate or ask, and transcribes it on this Mac.
@@ -39,9 +39,9 @@ targets:
       base:
         # Bundle id stays Nitpick-stable: Keychain items and TCC permission
         # grants (mic, accessibility) are keyed to it. Only the product name
-        # and display name are Vortex.
+        # and display name are Vortext.
         PRODUCT_BUNDLE_IDENTIFIER: io.github.shino0u0.Nitpick
-        PRODUCT_NAME: Vortex
+        PRODUCT_NAME: Vortext
         PRODUCT_MODULE_NAME: Nitpick
         ENABLE_HARDENED_RUNTIME: true
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon

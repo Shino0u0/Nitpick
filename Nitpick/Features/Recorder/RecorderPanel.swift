@@ -70,7 +70,7 @@ struct RecorderPillView: View {
         .colorScheme(.dark)
         .frame(maxWidth: 320)
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("Vortex recorder, \(statusText)")
+        .accessibilityLabel("Vortext recorder, \(statusText)")
     }
 
     private var statusText: String {

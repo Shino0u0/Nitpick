@@ -43,7 +43,7 @@ struct DictionaryView: View {
                     if filtered.isEmpty {
                         Text(
                             entries.isEmpty
-                                ? "Add a phrase like \"my email\" and Vortex will replace it every time you say it."
+                                ? "Add a phrase like \"my email\" and Vortext will replace it every time you say it."
                                 : "No matches."
                         )
                         .font(.callout)

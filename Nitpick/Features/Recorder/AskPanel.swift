@@ -12,7 +12,7 @@ final class AskPanelController {
             styleMask: [.titled, .closable, .utilityWindow, .resizable],
             backing: .buffered, defer: false
         )
-        panel.title = "Vortex"
+        panel.title = "Vortext"
         panel.level = .floating
         panel.isReleasedWhenClosed = false
         panel.contentView = NSHostingView(
