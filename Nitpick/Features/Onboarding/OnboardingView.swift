@@ -48,7 +48,7 @@ struct OnboardingView: View {
 
     private var rail: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Nitpick")
+            Text("Vortex")
                 .font(.headline)
                 .foregroundStyle(.white)
                 .padding(.bottom, 8)
@@ -93,17 +93,17 @@ struct OnboardingView: View {
         switch step {
         case .welcome:
             explain(
-                "Nitpick turns speech into text anywhere on your Mac.",
+                "Vortex turns speech into text anywhere on your Mac.",
                 "Transcription runs entirely on this Mac. Cloud Modes are optional, use your own API keys, and only send what you approve. No account, no telemetry."
             )
         case .access:
             explain(
-                "A quick tour of what Nitpick may ask for.",
-                "Microphone is required to record. The local model download is required once. Accessibility lets Nitpick type for you (optional - clipboard fallback works). Screen Recording is optional and only used for explicit screen context."
+                "A quick tour of what Vortex may ask for.",
+                "Microphone is required to record. The local model download is required once. Accessibility lets Vortex type for you (optional - clipboard fallback works). Screen Recording is optional and only used for explicit screen context."
             )
         case .microphone:
             explain(
-                "Nitpick records only while you dictate or ask.",
+                "Vortex records only while you dictate or ask.",
                 "macOS will ask for microphone access the first time."
             )
             Button(microphoneGranted ? "Microphone ready" : "Allow microphone") {
@@ -137,8 +137,8 @@ struct OnboardingView: View {
             }
         case .accessibility:
             explain(
-                "Accessibility lets Nitpick insert text where your cursor is.",
-                "Without it, results are copied to the clipboard instead and Nitpick tells you to paste."
+                "Accessibility lets Vortex insert text where your cursor is.",
+                "Without it, results are copied to the clipboard instead and Vortex tells you to paste."
             )
             Button(
                 accessibilityTrusted ? "Accessibility granted" : "Open Accessibility settings"
@@ -186,7 +186,7 @@ struct OnboardingView: View {
         case .complete:
             explain(
                 "You're set.",
-                "Nitpick lives in your menu bar. History opens next; your first dictation is one shortcut away."
+                "Vortex lives in your menu bar. History opens next; your first dictation is one shortcut away."
             )
         }
     }
@@ -204,7 +204,7 @@ struct OnboardingView: View {
                 Button("Skip") { advance() }
                     .buttonStyle(NPCapsuleButtonStyle())
             }
-            Button(step == .complete ? "Open Nitpick" : "Continue") {
+            Button(step == .complete ? "Open Vortex" : "Continue") {
                 if step == .complete {
                     appState.completeOnboarding()
                 } else {

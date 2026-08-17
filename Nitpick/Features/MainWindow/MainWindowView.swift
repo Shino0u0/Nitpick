@@ -28,7 +28,7 @@ struct MainWindowView: View {
                 Image(systemName: "waveform.circle.fill")
                     .foregroundStyle(NP.accent)
                     .font(.title3)
-                Text("Nitpick")
+                Text("Vortex")
                     .font(.headline)
                     .foregroundStyle(.white)
             }

@@ -15,20 +15,20 @@ struct NitpickApp: App {
     }
 
     var body: some Scene {
-        Window("Nitpick", id: "main") {
+        Window("Vortex", id: "main") {
             if let appState {
                 MainWindowView()
                     .environment(appState)
                     .modelContainer(appState.store.container)
             } else {
-                Text("Nitpick could not open its local database.\n\(startupError ?? "")")
+                Text("Vortex could not open its local database.\n\(startupError ?? "")")
                     .padding(40)
             }
         }
         .windowResizability(.contentMinSize)
         .defaultSize(width: 860, height: 560)
 
-        MenuBarExtra("Nitpick", systemImage: "waveform") {
+        MenuBarExtra("Vortex", systemImage: "waveform") {
             if let appState {
                 MenuBarContent()
                     .environment(appState)
@@ -60,11 +60,11 @@ private struct MenuBarContent: View {
         }
         .pickerStyle(.inline)
         Divider()
-        Button("Open Nitpick") {
+        Button("Open Vortex") {
             openWindow(id: "main")
             NSApp.activate()
         }
         Divider()
-        Button("Quit Nitpick") { NSApp.terminate(nil) }
+        Button("Quit Vortex") { NSApp.terminate(nil) }
     }
 }

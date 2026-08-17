@@ -2,7 +2,7 @@ name: Nitpick
 packages:
   FluidAudio:
     url: https://github.com/FluidInference/FluidAudio
-    from: 0.9.1
+    exactVersion: 0.15.5
 options:
   createIntermediateGroups: true
   deploymentTarget:
@@ -18,6 +18,7 @@ targets:
   Nitpick:
     type: application
     platform: macOS
+    productName: Vortex
     sources:
       - Nitpick
     dependencies:
@@ -29,14 +30,19 @@ targets:
     info:
       path: Nitpick/Resources/Info.plist
       properties:
-        CFBundleDisplayName: Nitpick
+        CFBundleDisplayName: Vortex
         LSUIElement: true
         LSApplicationCategoryType: public.app-category.productivity
         NSMicrophoneUsageDescription: Nitpick records audio only while you dictate or ask, and transcribes it on this Mac.
         NSHumanReadableCopyright: "Copyright Nitpick contributors. GPLv3."
     settings:
       base:
+        # Bundle id stays Nitpick-stable: Keychain items and TCC permission
+        # grants (mic, accessibility) are keyed to it. Only the product name
+        # and display name are Vortex.
         PRODUCT_BUNDLE_IDENTIFIER: io.github.shino0u0.Nitpick
+        PRODUCT_NAME: Vortex
+        PRODUCT_MODULE_NAME: Nitpick
         ENABLE_HARDENED_RUNTIME: true
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
   NitpickTests:
