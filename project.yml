@@ -38,6 +38,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: io.github.shino0u0.Nitpick
         ENABLE_HARDENED_RUNTIME: true
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
   NitpickTests:
     type: bundle.unit-test
     platform: macOS
