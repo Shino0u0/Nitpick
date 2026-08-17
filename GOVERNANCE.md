@@ -1,6 +1,6 @@
-# Nitpick Governance
+# Vortext Governance
 
-Nitpick is a public, community-guided GPLv3 project. The official repository remains maintainer-reviewed so community choice does not bypass security, privacy, testing, or licensing requirements.
+Vortext is a public, community-guided GPLv3 project. The official repository remains maintainer-reviewed so community choice does not bypass security, privacy, testing, or licensing requirements.
 
 ## Proposal and voting workflow
 

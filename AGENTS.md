@@ -1,4 +1,4 @@
-# Nitpick agent instructions
+# Vortext agent instructions
 
 Native macOS voice utility. Swift 6 language mode, strict concurrency, SwiftUI + AppKit, SwiftData. GPLv3, no accounts, no telemetry, no backend.
 
@@ -9,9 +9,9 @@ Native macOS voice utility. Swift 6 language mode, strict concurrency, SwiftUI +
 
 ## Build and test
 
-- `xcodegen generate` creates `Nitpick.xcodeproj` (generated, never committed, never edited by hand; edit `project.yml`).
-- Build: `xcodebuild build -scheme Nitpick -destination 'platform=macOS' -quiet`
-- Tests: `xcodebuild test -scheme Nitpick -destination 'platform=macOS' -only-testing:NitpickTests -quiet` (UI tests need a GUI session; run them separately).
+- `xcodegen generate` creates `Vortext.xcodeproj` (generated, never committed, never edited by hand; edit `project.yml`).
+- Build: `xcodebuild build -scheme Vortext -destination 'platform=macOS' -quiet`
+- Tests: `xcodebuild test -scheme Vortext -destination 'platform=macOS' -only-testing:VortextTests -quiet` (UI tests need a GUI session; run them separately).
 
 ## Hard rules
 

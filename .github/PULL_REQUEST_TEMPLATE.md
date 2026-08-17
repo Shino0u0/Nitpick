@@ -20,6 +20,6 @@
 
 ## Checklist
 
-- [ ] Tests pass locally (`xcodebuild test -scheme Nitpick -destination 'platform=macOS'`)
+- [ ] Tests pass locally (`xcodebuild test -scheme Vortext -destination 'platform=macOS'`)
 - [ ] No live API keys in code, fixtures, or logs
 - [ ] Security-sensitive areas (Keychain, providers, context, accessibility) flagged for owner review

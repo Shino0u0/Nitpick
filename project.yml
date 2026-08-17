@@ -1,4 +1,4 @@
-name: Nitpick
+name: Vortext
 packages:
   FluidAudio:
     url: https://github.com/FluidInference/FluidAudio
@@ -15,57 +15,55 @@ settings:
     GENERATE_INFOPLIST_FILE: true
     DEAD_CODE_STRIPPING: true
 targets:
-  Nitpick:
+  Vortext:
     type: application
     platform: macOS
     productName: Vortext
     sources:
-      - Nitpick
+      - Vortext
     dependencies:
       - package: FluidAudio
     entitlements:
-      path: Nitpick/Resources/Nitpick.entitlements
+      path: Vortext/Resources/Vortext.entitlements
       properties:
         com.apple.security.device.audio-input: true
     info:
-      path: Nitpick/Resources/Info.plist
+      path: Vortext/Resources/Info.plist
       properties:
         CFBundleDisplayName: Vortext
         LSUIElement: true
         LSApplicationCategoryType: public.app-category.productivity
-        NSMicrophoneUsageDescription: Nitpick records audio only while you dictate or ask, and transcribes it on this Mac.
-        NSHumanReadableCopyright: "Copyright Nitpick contributors. GPLv3."
+        NSMicrophoneUsageDescription: Vortext records audio only while you dictate or ask, and transcribes it on this Mac.
+        NSHumanReadableCopyright: "Copyright Vortext contributors. GPLv3."
     settings:
       base:
-        # Bundle id stays Nitpick-stable: Keychain items and TCC permission
-        # grants (mic, accessibility) are keyed to it. Only the product name
-        # and display name are Vortext.
-        PRODUCT_BUNDLE_IDENTIFIER: io.github.shino0u0.Nitpick
+        # Keychain items and TCC permission grants are keyed to this id;
+        # renaming it resets permissions and orphans stored keys.
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.shino0u0.Vortext
         PRODUCT_NAME: Vortext
-        PRODUCT_MODULE_NAME: Nitpick
         ENABLE_HARDENED_RUNTIME: true
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-  NitpickTests:
+  VortextTests:
     type: bundle.unit-test
     platform: macOS
     sources:
-      - NitpickTests
+      - VortextTests
     dependencies:
-      - target: Nitpick
-  NitpickUITests:
+      - target: Vortext
+  VortextUITests:
     type: bundle.ui-testing
     platform: macOS
     sources:
-      - NitpickUITests
+      - VortextUITests
     dependencies:
-      - target: Nitpick
+      - target: Vortext
 schemes:
-  Nitpick:
+  Vortext:
     build:
       targets:
-        Nitpick: all
+        Vortext: all
     test:
       gatherCoverageData: true
       targets:
-        - NitpickTests
-        - NitpickUITests
+        - VortextTests
+        - VortextUITests

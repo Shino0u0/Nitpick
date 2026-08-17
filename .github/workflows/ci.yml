@@ -22,13 +22,13 @@ jobs:
 
       - name: Build
         run: |
-          xcodebuild build -scheme Nitpick \
+          xcodebuild build -scheme Vortext \
             -destination 'platform=macOS' \
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 
       - name: Unit tests
         run: |
-          xcodebuild test -scheme Nitpick \
+          xcodebuild test -scheme Vortext \
             -destination 'platform=macOS' \
-            -only-testing:NitpickTests \
+            -only-testing:VortextTests \
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO

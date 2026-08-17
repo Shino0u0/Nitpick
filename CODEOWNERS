@@ -1,8 +1,8 @@
 # Security-sensitive and architectural areas require designated-owner review.
 * @Shino0u0
-/Nitpick/Services/Keychain/ @Shino0u0
-/Nitpick/Services/Providers/ @Shino0u0
-/Nitpick/Services/Context/ @Shino0u0
-/Nitpick/Services/Accessibility/ @Shino0u0
+/Vortext/Services/Keychain/ @Shino0u0
+/Vortext/Services/Providers/ @Shino0u0
+/Vortext/Services/Context/ @Shino0u0
+/Vortext/Services/Accessibility/ @Shino0u0
 /.github/ @Shino0u0
 /project.yml @Shino0u0

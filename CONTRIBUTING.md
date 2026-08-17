@@ -1,10 +1,10 @@
-# Contributing to Nitpick
+# Contributing to Vortext
 
 ## Development setup
 
 1. Install Xcode 26.1+ and `brew install xcodegen`.
-2. `xcodegen generate` at the repo root produces `Nitpick.xcodeproj` (not committed).
-3. Run tests with `xcodebuild test -scheme Nitpick -destination 'platform=macOS'`.
+2. `xcodegen generate` at the repo root produces `Vortext.xcodeproj` (not committed).
+3. Run tests with `xcodebuild test -scheme Vortext -destination 'platform=macOS'`.
 
 ## Issue flow
 

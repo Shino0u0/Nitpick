@@ -1,6 +1,6 @@
-# Nitpick
+# Vortext
 
-A small, native macOS voice utility. Nitpick records speech, transcribes it locally, optionally improves or answers it with a cloud model you choose, and inserts the result into the active application.
+A small, native macOS voice utility. Vortext records speech, transcribes it locally, optionally improves or answers it with a cloud model you choose, and inserts the result into the active application.
 
 - **Local first.** Transcription runs on-device with a Parakeet model via FluidAudio. The Default Mode works offline and never contacts a server.
 - **Bring your own key.** Optional cloud Modes use your own Groq, OpenRouter, SambaNova, or Cerebras API key, stored only in the macOS Keychain.
@@ -26,13 +26,13 @@ A small, native macOS voice utility. Nitpick records speech, transcribes it loca
 
 ```bash
 brew install xcodegen
-git clone https://github.com/Shino0u0/Nitpick.git
-cd Nitpick
+git clone https://github.com/Shino0u0/Vortext.git
+cd Vortext
 xcodegen generate
-open Nitpick.xcodeproj
+open Vortext.xcodeproj
 ```
 
-Run the `Nitpick` scheme. Tests: `xcodebuild test -scheme Nitpick -destination 'platform=macOS'`.
+Run the `Vortext` scheme. Tests: `xcodebuild test -scheme Vortext -destination 'platform=macOS'`.
 
 ## Contributing
 

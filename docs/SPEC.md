@@ -1,14 +1,14 @@
-# Nitpick MVP Product and Technical Specification
+# Vortext MVP Product and Technical Specification
 
 **Status:** Final — approved for implementation planning  
 **Version:** 1.0  
 **Date:** August 16, 2026  
-**Product:** Nitpick for macOS  
+**Product:** Vortext for macOS  
 **License:** GNU General Public License v3.0
 
 ## 1. Product Summary
 
-Nitpick is a small, native macOS voice utility. It records speech, transcribes it locally, optionally improves or answers it with a user-selected cloud model, and either inserts the result into the active application or displays it in Nitpick.
+Vortext is a small, native macOS voice utility. It records speech, transcribes it locally, optionally improves or answers it with a user-selected cloud model, and either inserts the result into the active application or displays it in Vortext.
 
 The MVP is deliberately smaller than VoiceInk. It has no license gate, account system, subscription, analytics, marketplace, or large provider abstraction framework. Its default path remains useful offline after the local transcription model has been downloaded.
 
@@ -38,7 +38,7 @@ The MVP is deliberately smaller than VoiceInk. It has no license gate, account s
 ### 1.3 Non-goals for MVP
 
 - User accounts, login, subscriptions, trials, or license activation.
-- A Nitpick backend or proxy server.
+- A Vortext backend or proxy server.
 - Syncing settings, history, audio, or API keys between Macs.
 - Multiple local transcription engines or model pickers.
 - Local LLM enhancement.
@@ -82,7 +82,7 @@ All dependency versions must be pinned in `Package.resolved`.
 
 ## 3. Experience Model
 
-Nitpick has two primary surfaces:
+Vortext has two primary surfaces:
 
 1. A compact floating recorder pill.
 2. A main window with four tabs.
@@ -90,25 +90,25 @@ Nitpick has two primary surfaces:
 ### 3.1 Dictate
 
 1. The user invokes the Dictate shortcut or recorder control.
-2. Nitpick remembers the target application and starts recording.
+2. Vortext remembers the target application and starts recording.
 3. The user stops recording.
-4. Nitpick transcribes locally.
+4. Vortext transcribes locally.
 5. The dictionary transforms recognized phrases.
-6. If Default Mode is selected, Nitpick inserts the transcript immediately.
-7. If a custom Mode is selected, Nitpick assembles approved context, requests cloud enhancement, and inserts the result.
-8. Nitpick stores the local History entry.
+6. If Default Mode is selected, Vortext inserts the transcript immediately.
+7. If a custom Mode is selected, Vortext assembles approved context, requests cloud enhancement, and inserts the result.
+8. Vortext stores the local History entry.
 
 ### 3.2 Ask
 
 1. The user invokes the Ask shortcut or switches the pill to Ask.
-2. Nitpick records and transcribes locally.
+2. Vortext records and transcribes locally.
 3. The dictionary transforms recognized phrases.
-4. Nitpick sends the selected custom Mode, transcript, and approved context to the selected cloud model.
-5. The response appears in a compact Nitpick response panel.
+4. Vortext sends the selected custom Mode, transcript, and approved context to the selected cloud model.
+5. The response appears in a compact Vortext response panel.
 6. The user may edit or copy the answer.
-7. Nitpick stores the local History entry.
+7. Vortext stores the local History entry.
 
-Ask requires a configured cloud model. When no cloud model is available, Nitpick explains what is missing and preserves the transcript.
+Ask requires a configured cloud model. When no cloud model is available, Vortext explains what is missing and preserves the transcript.
 
 ### 3.3 Default Mode
 
@@ -187,7 +187,7 @@ Onboarding uses a compact left progress rail and one focused task per page. Each
 8. **Shortcuts:** Configure Dictate and Ask shortcuts and reject conflicts.
 9. **Try Dictate:** Record a safe local sample.
 10. **Try Ask:** Run only when a cloud provider is configured; otherwise explain how to enable it later.
-11. **Complete:** Open History and keep Nitpick in the menu bar.
+11. **Complete:** Open History and keep Vortext in the menu bar.
 
 ### 5.2 Permission fallback behavior
 
@@ -247,7 +247,7 @@ Each normalized model may display:
 - Text and image-input capability when known.
 - Availability state.
 
-Unknown capability must be treated conservatively as text-only. Nitpick must never attach a screenshot merely because a model name appears to imply vision.
+Unknown capability must be treated conservatively as text-only. Vortext must never attach a screenshot merely because a model name appears to imply vision.
 
 ### 6.3 Modes
 
@@ -256,7 +256,7 @@ Modes are user-facing AI behaviors. `Enhancement` is an internal pipeline term, 
 The Default Mode is pinned first. Custom Modes support:
 
 - Name.
-- SF Symbol or Nitpick-composed system icon.
+- SF Symbol or Vortext-composed system icon.
 - Instruction text.
 - Optional provider/model override; otherwise use the global default cloud model.
 - Optional target application rules using bundle identifiers.
@@ -265,7 +265,7 @@ The Default Mode is pinned first. Custom Modes support:
 
 Initial optional examples may include Email, Reply, Rewrite, Notes, and Casual. These are editable examples, not permanent system Modes.
 
-Custom artwork copied from VoiceInk must not be used. Icons should use SF Symbols and simple shapes produced inside Nitpick.
+Custom artwork copied from VoiceInk must not be used. Icons should use SF Symbols and simple shapes produced inside Vortext.
 
 ### 6.4 Dictionary
 
@@ -279,7 +279,7 @@ Dictionary entries contain:
 Examples:
 
 - `my email` → `myemail@personemail.com`
-- `nit pick` → `Nitpick`
+- `nit pick` → `Vortext`
 
 The Dictionary includes create, edit, delete, search, enable/disable, and a small test field that previews replacements without invoking AI.
 
@@ -314,7 +314,7 @@ The LLM may improve surrounding text but must not alter protected replacement va
 
 ## 8. Context System
 
-Context is captured only as part of an explicit Dictate or Ask action. Nitpick does not poll or retain context in the background.
+Context is captured only as part of an explicit Dictate or Ask action. Vortext does not poll or retain context in the background.
 
 ### 8.1 Sources
 
@@ -341,7 +341,7 @@ Context is captured only as part of an explicit Dictate or Ask action. Nitpick d
 
 - Capture one image at action completion, not a stream.
 - Prefer the remembered target application's frontmost eligible window.
-- Exclude Nitpick's own windows and floating recorder.
+- Exclude Vortext's own windows and floating recorder.
 - Do not write the image to disk.
 - Release image data immediately after request completion or cancellation.
 
@@ -349,10 +349,10 @@ Context is captured only as part of an explicit Dictate or Ask action. Nitpick d
 
 Before adding clipboard text to a cloud request, omit it when any of the following applies:
 
-- It exactly matches a provider key currently stored by Nitpick.
+- It exactly matches a provider key currently stored by Vortext.
 - It contains a private-key header.
 - It resembles a single high-entropy credential or bearer token.
-- Nitpick's API-key editor was the source interaction.
+- Vortext's API-key editor was the source interaction.
 
 The recorder must report `Clipboard omitted—possible secret` rather than silently sending or silently dropping it. Clipboard context must also have a conservative length limit with visible truncation metadata.
 
@@ -391,7 +391,7 @@ protocol CloudProviderClient: Sendable {
 | SambaNova | `https://api.sambanova.ai/v1` | `GET /models` | `POST /chat/completions` |
 | Cerebras | `https://api.cerebras.ai/v1` | `GET /models` | `POST /chat/completions` |
 
-All calls use provider-issued bearer credentials and direct HTTPS connections from Nitpick. Provider-specific headers are added only when their official API requires them.
+All calls use provider-issued bearer credentials and direct HTTPS connections from Vortext. Provider-specific headers are added only when their official API requires them.
 
 ### 9.3 Model normalization
 
@@ -423,7 +423,7 @@ Prefer explicit provider response metadata. A small provider-specific capability
 
 Store each provider key as a separate `kSecClassGenericPassword` item using:
 
-- Service: stable Nitpick-specific service identifier.
+- Service: stable Vortext-specific service identifier.
 - Account: stable provider identifier.
 - Accessibility: `kSecAttrAccessibleWhenUnlockedThisDeviceOnly`.
 - Synchronization: disabled.
@@ -452,7 +452,7 @@ Use a stable bundle identifier and signing identity across builds. Check every `
 
 ### 10.4 Security boundary
 
-Keychain protects credentials at rest on an uncompromised Mac. Nitpick must not claim protection from administrator-level malware, keyloggers, provider compromise, or live process-memory inspection.
+Keychain protects credentials at rest on an uncompromised Mac. Vortext must not claim protection from administrator-level malware, keyloggers, provider compromise, or live process-memory inspection.
 
 ## 11. Local Persistence
 
@@ -505,12 +505,12 @@ SwiftData stores non-secret application state.
 - No provider API key in SwiftData.
 - No clipboard payload or screenshot in SwiftData.
 - Clearing History deletes associated audio files.
-- Uninstall behavior follows normal macOS application-container behavior; Nitpick must also provide explicit Clear History and Remove Provider actions.
+- Uninstall behavior follows normal macOS application-container behavior; Vortext must also provide explicit Clear History and Remove Provider actions.
 
 ## 12. Module Boundaries
 
 ```text
-Nitpick/
+Vortext/
 ├── App/
 ├── Core/
 │   ├── Models/
@@ -588,7 +588,7 @@ Errors should state the failed operation and the next useful action.
 The MVP is complete when all of the following are demonstrably true:
 
 1. A fresh user can complete or skip optional onboarding steps without a license screen.
-2. Nitpick downloads and uses one Parakeet local model.
+2. Vortext downloads and uses one Parakeet local model.
 3. Default Mode transcribes and inserts text without a network connection.
 4. Accessibility denial produces a usable copy-and-paste fallback.
 5. The main tabs are exactly History, Models, Modes, Dictionary.
@@ -649,30 +649,30 @@ Live provider tests must be opt-in and read keys from the developer's Keychain o
 ## 18. Distribution and Licensing
 
 - The repository and distributed source are GPLv3.
-- Official Nitpick binaries are free of charge and contain no activation or license-key check.
+- Official Vortext binaries are free of charge and contain no activation or license-key check.
 - Include the complete GPLv3 `LICENSE` file at repository root.
 - Preserve required notices for any GPL-covered source that is actually reused.
 - A clean implementation inspired by behavior must not copy VoiceInk trademarks, icons, screenshots, proprietary service configuration, or non-code assets.
-- Use a stable Nitpick bundle identifier and Developer ID signing identity before external distribution.
+- Use a stable Vortext bundle identifier and Developer ID signing identity before external distribution.
 - Distribution decisions between direct notarized download and the Mac App Store occur after Accessibility, sandbox, and update requirements are validated.
 - Direct, notarized GitHub Releases are the preferred first public distribution path.
-- The GPLv3 software license and voluntary project funding are separate. Nitpick must not call sponsorship a software license.
+- The GPLv3 software license and voluntary project funding are separate. Vortext must not call sponsorship a software license.
 
 ## 19. Open-Source Governance and Sustainability
 
-Nitpick is a public, community-guided GPLv3 project. Users may use, inspect, modify, build, and redistribute it under the GPLv3 terms. The official repository remains maintainer-reviewed so community choice does not bypass security, privacy, testing, or licensing requirements.
+Vortext is a public, community-guided GPLv3 project. Users may use, inspect, modify, build, and redistribute it under the GPLv3 terms. The official repository remains maintainer-reviewed so community choice does not bypass security, privacy, testing, or licensing requirements.
 
 ### 19.1 Funding model
 
-- Funding is voluntary and never required to download, build, use, modify, or contribute to Nitpick.
-- The preferred label is `Support Nitpick` or `Sponsor development`, not `Buy a license`.
+- Funding is voluntary and never required to download, build, use, modify, or contribute to Vortext.
+- The preferred label is `Support Vortext` or `Sponsor development`, not `Buy a license`.
 - Configure GitHub Sponsors through `.github/FUNDING.yml`.
 - Support one-time and recurring sponsorship when the selected funding platform permits it.
 - Sponsor benefits may include public acknowledgment and development updates only.
 - Sponsors receive no gated features, earlier builds, weighted votes, privileged issue priority, or private source access.
-- Do not describe sponsorship as a tax-deductible charitable donation unless Nitpick later operates through an eligible tax-exempt entity and receives appropriate professional guidance.
-- The MVP contains no payment processing. The repository may display its GitHub Sponsor button. Nitpick's About window may link to the public repository rather than embedding a checkout flow.
-- Paid consulting, integration help, or support may be offered separately later without changing the GPL rights attached to Nitpick.
+- Do not describe sponsorship as a tax-deductible charitable donation unless Vortext later operates through an eligible tax-exempt entity and receives appropriate professional guidance.
+- The MVP contains no payment processing. The repository may display its GitHub Sponsor button. Vortext's About window may link to the public repository rather than embedding a checkout flow.
+- Paid consulting, integration help, or support may be offered separately later without changing the GPL rights attached to Vortext.
 
 ### 19.2 Repository community files
 
@@ -716,7 +716,7 @@ Votes govern product preference, not repository credentials. Maintainers retain 
 
 ## 20. Claude for Open Source Application Strategy
 
-The maintainer intends to apply to Anthropic's Claude for Open Source Program. This is a sustainability goal, not a Nitpick feature, entitlement, funding source, or reason to distort community metrics.
+The maintainer intends to apply to Anthropic's Claude for Open Source Program. This is a sustainability goal, not a Vortext feature, entitlement, funding source, or reason to distort community metrics.
 
 ### 20.1 Current program facts
 
@@ -731,18 +731,18 @@ As of August 16, 2026, the program advertises six complimentary months of Claude
 
 Eligibility and program terms may change. The application must use the then-current official page and make only verifiable claims.
 
-### 20.2 Nitpick strategy
+### 20.2 Vortext strategy
 
 - Apply immediately only if the maintainer's existing open-source record supports an honest application.
-- Otherwise, release Nitpick publicly and build real usage and contribution history before reapplying.
+- Otherwise, release Vortext publicly and build real usage and contribution history before reapplying.
 - Optimize for healthy external contribution, not artificial contributor counts or low-quality pull requests.
 - Track merged external contributors, releases, downstream usage, package downloads if applicable, security posture, and community outcomes as factual application evidence.
 - Keep accepted proposals, polls, Issues, pull requests, and release notes public so impact is auditable.
 - A paid activation gate is not part of this strategy and does not improve open-source eligibility.
 
-The Claude Max benefit applies to the accepted contributor's Claude subscription. It is not Anthropic API credit for Nitpick or its users. Nitpick users still provide their own provider API keys.
+The Claude Max benefit applies to the accepted contributor's Claude subscription. It is not Anthropic API credit for Vortext or its users. Vortext users still provide their own provider API keys.
 
-At the end of the complimentary period, an existing paid Claude subscription may resume under Anthropic's current terms unless cancelled; an otherwise free account returns to the free plan. Nitpick must not promise acceptance, renewal, API credits, or ongoing Anthropic sponsorship.
+At the end of the complimentary period, an existing paid Claude subscription may resume under Anthropic's current terms unless cancelled; an otherwise free account returns to the free plan. Vortext must not promise acceptance, renewal, API credits, or ongoing Anthropic sponsorship.
 
 ## 21. Official References
 
@@ -768,7 +768,7 @@ At the end of the complimentary period, an existing paid Claude subscription may
 
 ## 22. Decisions Locked for MVP
 
-- Product name: Nitpick.
+- Product name: Vortext.
 - Visual direction: Quiet Utility.
 - Native lean modular architecture.
 - SwiftUI/AppKit and SwiftData.
@@ -779,7 +779,7 @@ At the end of the complimentary period, an existing paid Claude subscription may
 - Tabs are History, Models, Modes, Dictionary.
 - Context is action-scoped and transparent.
 - Provider keys are local-only in device-bound macOS Keychain storage.
-- No Nitpick server, licensing UI, account, telemetry, or subscription in MVP.
+- No Vortext server, licensing UI, account, telemetry, or subscription in MVP.
 - Source and official binaries are free under GPLv3 with no activation gate.
 - Funding is voluntary through GitHub Sponsors and never changes product access or voting power.
 - Product direction is proposed and voted on publicly, with documented maintainer safeguards.
